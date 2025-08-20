@@ -4,7 +4,7 @@
   "description": "一个智能的Git提交工具，帮助开发者快速、规范地提交代码，支持智能代码分析和标准化提交格式。仅支持macOS和Linux系统，Windows用户请使用WSL2或Git Bash。",
   "main": "gc",
   "bin": {
-    "gc": "./gc"
+    "gc": "gc"
   },
   "scripts": {
     "test": "./test/simple-test.sh",
@@ -33,7 +33,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mengqc1995/gc-npm-package.git"
+    "url": "git+https://github.com/mengqc1995/gc-npm-package.git"
   },
   "bugs": {
     "url": "https://github.com/mengqc1995/gc-npm-package/issues"
