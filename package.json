@@ -1,6 +1,6 @@
 {
   "name": "gc-npm-package",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "一个智能的Git提交工具，帮助开发者快速、规范地提交代码，支持智能代码分析和标准化提交格式",
   "main": "gc",
   "bin": {
