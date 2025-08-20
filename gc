@@ -4,8 +4,57 @@
 # 使用方法: ./gc [type] [scope] [description]
 # 例如: ./gc feat userManage "新增用户管理功能"
 
-# 获取脚本所在目录
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# 获取脚本所在目录（支持npm全局安装）
+get_script_dir() {
+    local script_path="$0"
+    local script_dir=""
+    
+    # 检查是否是npm全局安装
+    if [[ "$script_path" == *"/node_modules/"* ]] || [[ "$script_path" == *"/npm/"* ]] || [[ "$script_path" == *"/nvm/"* ]]; then
+        # npm全局安装的情况，查找包含所有脚本的目录
+        local current_dir="$(dirname "$script_path")"
+        
+        # 向上查找包含git-commit.sh的目录
+        while [[ "$current_dir" != "/" ]]; do
+            if [[ -f "$current_dir/git-commit.sh" ]]; then
+                script_dir="$current_dir"
+                break
+            fi
+            current_dir="$(dirname "$current_dir")"
+        done
+        
+        # 如果还是找不到，尝试使用which命令
+        if [[ -z "$script_dir" ]]; then
+            local gc_path="$(which gc 2>/dev/null)"
+            if [[ -n "$gc_path" ]]; then
+                local gc_dir="$(dirname "$gc_path")"
+                # 尝试常见的npm全局安装路径
+                local possible_paths=(
+                    "$gc_dir/../lib/node_modules/gc-npm-package"
+                    "$gc_dir/../node_modules/gc-npm-package"
+                    "/usr/local/lib/node_modules/gc-npm-package"
+                    "/opt/homebrew/lib/node_modules/gc-npm-package"
+                )
+                
+                for path in "${possible_paths[@]}"; do
+                    if [[ -f "$path/git-commit.sh" ]]; then
+                        script_dir="$path"
+                        break
+                    fi
+                done
+            fi
+        fi
+    fi
+    
+    # 如果上面的方法都失败了，使用传统方法
+    if [[ -z "$script_dir" ]]; then
+        script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    fi
+    
+    echo "$script_dir"
+}
+
+SCRIPT_DIR="$(get_script_dir)"
 
 # 检查主脚本是否存在
 if [[ -f "$SCRIPT_DIR/git-commit.sh" ]]; then
@@ -16,5 +65,9 @@ else
     echo "请确保 gc 和 git-commit.sh 在同一目录下"
     echo "当前脚本目录: $SCRIPT_DIR"
     echo "查找的脚本路径: $SCRIPT_DIR/git-commit.sh"
+    echo ""
+    echo "💡 提示：如果使用npm全局安装，请尝试重新安装："
+    echo "   npm uninstall -g gc-npm-package"
+    echo "   npm install -g gc-npm-package"
     exit 1
 fi
