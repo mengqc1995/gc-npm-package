@@ -1,7 +1,7 @@
 {
   "name": "gc-npm-package",
-  "version": "1.1.1",
-  "description": "一个智能的Git提交工具，帮助开发者快速、规范地提交代码，支持智能代码分析和标准化提交格式",
+  "version": "1.1.2",
+  "description": "一个智能的Git提交工具，帮助开发者快速、规范地提交代码，支持智能代码分析和标准化提交格式。仅支持macOS和Linux系统，Windows用户请使用WSL2或Git Bash。",
   "main": "gc",
   "bin": {
     "gc": "./gc"
@@ -23,7 +23,11 @@
     "bash",
     "shell",
     "automation",
-    "productivity"
+    "productivity",
+    "macos",
+    "linux",
+    "unix",
+    "wsl"
   ],
   "author": "yichenzi",
   "license": "ISC",
@@ -42,6 +46,17 @@
     "darwin",
     "linux"
   ],
+  "platforms": [
+    "macos",
+    "linux",
+    "wsl"
+  ],
+  "systemRequirements": {
+    "macos": "需要Bash shell环境（系统默认支持）",
+    "linux": "需要Bash shell环境（系统默认支持）",
+    "windows": "不支持原生Windows，建议使用WSL2或Git Bash",
+    "wsl": "在Windows Subsystem for Linux中完全支持"
+  },
   "files": [
     "gc",
     "git-commit.sh",
