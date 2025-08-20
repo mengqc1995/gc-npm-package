@@ -1,6 +1,6 @@
 {
   "name": "gc-npm-package",
-  "version": "1.1.2",
+  "version": "0.1.7",
   "description": "一个智能的Git提交工具，帮助开发者快速、规范地提交代码，支持智能代码分析和标准化提交格式。仅支持macOS和Linux系统，Windows用户请使用WSL2或Git Bash。",
   "main": "gc",
   "bin": {
@@ -10,7 +10,7 @@
     "test": "./test/simple-test.sh",
     "test:full": "./test/test-suite.sh",
     "test:package": "node test-package.js",
-    "postinstall": "chmod +x gc git-commit.sh code-analyzer.sh test/*.sh"
+    "postinstall": "node postinstall.js"
   },
   "keywords": [
     "git",
@@ -61,12 +61,10 @@
     "gc",
     "git-commit.sh",
     "code-analyzer.sh",
+    "postinstall.js",
     "README.md",
     "test/"
   ],
-  "devDependencies": {},
-  "peerDependencies": {},
-  "optionalDependencies": {},
   "bundledDependencies": [],
   "man": "./README.md"
 }

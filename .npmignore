@@ -1,8 +1,6 @@
 # 开发相关文件
 *.tgz
 *.tar.gz
-code-analyzer.sh
-git-commit.sh
 
 # 系统文件
 .DS_Store
