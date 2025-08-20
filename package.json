@@ -1,0 +1,47 @@
+{
+  "name": "gc-npm-package",
+  "version": "1.0.3",
+  "description": "一个智能的Git提交工具，帮助开发者快速、规范地提交代码，支持智能代码分析和标准化提交格式",
+  "main": "gc",
+  "bin": {
+    "gc": "gc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "chmod +x gc git-commit.sh code-analyzer.sh"
+  },
+  "keywords": [
+    "git",
+    "commit",
+    "conventional-commits",
+    "cli",
+    "tool",
+    "development",
+    "workflow",
+    "bash",
+    "shell"
+  ],
+  "author": "yichenzi",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yichenzi/gc-npm-package.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yichenzi/gc-npm-package/issues"
+  },
+  "homepage": "https://github.com/yichenzi/gc-npm-package#readme",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "files": [
+    "gc",
+    "git-commit.sh",
+    "code-analyzer.sh",
+    "README.md"
+  ]
+}

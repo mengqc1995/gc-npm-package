@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Git 提交快捷命令
+# 使用方法: ./gc [type] [scope] [description]
+# 例如: ./gc feat userManage "新增用户管理功能"
+
+# 获取脚本所在目录
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# 检查主脚本是否存在
+if [[ -f "$SCRIPT_DIR/git-commit.sh" ]]; then
+    # 调用主脚本
+    "$SCRIPT_DIR/git-commit.sh" "$@"
+else
+    echo "❌ 错误：找不到 git-commit.sh 脚本"
+    echo "请确保 gc 和 git-commit.sh 在同一目录下"
+    echo "当前脚本目录: $SCRIPT_DIR"
+    echo "查找的脚本路径: $SCRIPT_DIR/git-commit.sh"
+    exit 1
+fi
